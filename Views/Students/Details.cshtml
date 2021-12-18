@@ -1,0 +1,71 @@
+﻿@using PrijemniMVC.Models.VM
+@model StudentDetailsVM
+
+@{
+    ViewData["Title"] = "Detalji o studentu";
+}
+
+<h1>Detalji</h1>
+
+<div class="row">
+    <h4>Student</h4>
+    <hr />
+    <div class="col-sm col-6" >
+
+
+        <dl class="row">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.BrojIndeksa)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.BrojIndeksa)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Ime)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Ime)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Prezime)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Prezime)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Godina)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Godina)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.StatusStudentaProperty.NazivStatusa)
+            </dt>
+            <dt class="col-sm-8">
+                @Html.DisplayFor(model => model.StatusStudentaProperty.NazivStatusa)
+            </dt>
+
+        </dl>
+
+    </div>
+    <div class="col-sm col-6">
+        <h4>Kursevi na koje je upisan:</h4>
+        <div class="list-group ">
+           @foreach(var item in Model.ListaKurseva)
+            {                
+                 <a href="#" class="list-group-item list-group-item-action disabled">@item.NazivKursa</a>
+            }
+           
+        </div>
+    </div>
+</div>
+<div class="row form-group ">
+    <div class="col-6">
+        <a class="btn-primary btn form-control" asp-action="Upsert" asp-route-id="@Model.PkStudentId">Uredi podatke</a>
+    </div>
+
+    <div class="col-6">
+        <a class="btn-secondary btn form-control" asp-action="Index">Nazad na listu</a>
+    </div>
+
+</div>

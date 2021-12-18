@@ -1,0 +1,43 @@
+﻿@model IEnumerable<PrijemniMVC.Models.Kurs>
+
+@{
+    ViewData["Title"] = "Kursevi";
+}
+<div class="container col-8">
+    <div class="row col-12">
+        <div class="col-6" style="float:left">
+         <h1>Prikaz kurseva</h1>
+    </div>
+    <div class="col-6 text-end p-3" style="float:right">
+         <a asp-action="Create" class="btn-primary btn">Dodaj novi kurs</a>
+    </div>
+    </div>    
+   
+  
+    <br />
+    <div class="list-group container">
+        @foreach (var item in Model)
+        {
+           <a asp-action="GetStudentiNaKursu" asp-route-idKursa="@item.PkKursId" class="list-group-item list-group-item-action border-primary">
+            <div class="row col-12">
+                <div class="col-6" style="float:left">
+                    <label style="text-decoration:none" >
+                        @Html.DisplayFor(modelItem => item.NazivKursa)
+                    </label>
+
+                </div>
+                
+                <div class="col-6 text-end" style="float:right">
+                     <form asp-action="Delete" asp-route-idKursa="@item.PkKursId">
+                    <input type="submit"  class="btn btn-danger " value="Obriši kurs"/>
+                    </form>
+                </div>
+
+            </div>
+            </a>
+            <br />
+            
+        }
+    </div>
+
+</div>

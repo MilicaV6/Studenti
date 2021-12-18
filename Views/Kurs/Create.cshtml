@@ -1,0 +1,53 @@
+﻿@model PrijemniMVC.Models.VM.CreateKursGetVM
+
+@{
+    ViewData["Title"] = "Kreiranje kursa";
+}
+
+<h1>Kreiraj kurs</h1>
+<hr />
+ <br />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NazivKursa" class="control-label"></label>
+                <input asp-for="NazivKursa" class="form-control" />
+                <span asp-validation-for="NazivKursa" class="text-danger"></span>
+            </div>
+             <br />
+            <div class="form-group">
+               
+                <label  class="control-label"><strong>Izaberi studente:</strong></label>
+                <br />
+                <div class="list-group">
+                @foreach (var item in Model.Studenti)
+                {
+                    <label class="list-group-item list-group-item-action">
+                        <input type="checkbox" name="StudentiIds" value="@item.PkStudentId">
+                        <b>@item.BrojIndeksa </b>&nbsp; @item.Ime @item.Prezime
+                    </label>
+
+                    <br />
+                }
+                </div>
+            </div>
+            <div class=" row">
+                <div class="col-6 ">
+                     <input type="submit" value="Kreiraj" class="btn btn-primary form-control"  />
+                </div>
+                <div class="col-6 ">
+                     <a class="btn btn-secondary form-control" asp-action="Index">Nazad na listu</a>
+                </div>
+               
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
